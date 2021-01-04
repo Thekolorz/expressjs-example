@@ -7,8 +7,15 @@ const port = 3000;
 app.use(Express.json());
 app.use(Express.urlencoded({extended: true}));
 
+function middleware(req, res, next) {
+    console.log(req.body);
+    console.log(req.query);
+
+    next();
+}
+
 // GET
-app.get("/books", (req, res) => {
+app.get("/books", middleware, (req, res) => {
     res.json(Books);
 });
 
